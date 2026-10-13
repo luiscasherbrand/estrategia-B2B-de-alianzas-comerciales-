@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Dos Uno | Proyecto en Garantía Institucional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-light: #E5C98B;
+    --gold-dark: #8B7A3F;
+    --black: #0A0A0A;
+    --black-soft: #141414;
+    --black-card: #1A1A1A;
+    --gray-dark: #2A2A2A;
+    --gray: #6B6B6B;
+    --gray-light: #A0A0A0;
+    --white: #F5F5F0;
+    --white-pure: #FFFFFF;
+    --border: rgba(201, 169, 97, 0.15);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.2rem 2rem;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .nav-brand span {
+    color: var(--white);
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+    background: 
+      radial-gradient(ellipse at top, rgba(201, 169, 97, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(201, 169, 97, 0.05) 0%, transparent 50%),
+      var(--black);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(201, 169, 97, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 1100px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    max-width: 750px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 4rem auto 0;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    font-weight: 500;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 7rem 2rem;
+    position: relative;
+  }
+
+  .section-dark {
+    background: var(--black-soft);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .section-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--gray-light);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* ===== CORE STRATEGY ===== */
+  .core-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .core-text p {
+    color: var(--gray-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+  }
+
+  .core-text strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .core-visual {
+    position: relative;
+    padding: 3rem;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--black-card) 0%, var(--black-soft) 100%);
+  }
+
+  .core-visual::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .triangle {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .triangle-item {
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201, 169, 97, 0.03);
+  }
+
+  .triangle-item h4 {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .triangle-item p {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
+  /* ===== JUSTIFICATION ===== */
+  .justification-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .justification-card {
+    padding: 2.5rem;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .justification-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+
+  .justification-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .justification-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .justification-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .justification-card h3 {
+    color: var(--white);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .justification-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  /* ===== PROCESS TIMELINE ===== */
+  .process {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .process::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  }
+
+  .process-step {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .process-number {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--gold);
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-content {
+    flex: 1;
+    padding-top: 0.5rem;
+  }
+
+  .process-content h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .process-content p {
+    color: var(--gray-light);
+    font-weight: 300;
+    font-size: 0.95rem;
+  }
+
+  /* ===== VALUE TRIANGLE ===== */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--black-card) 0%, rgba(201, 169, 97, 0.03) 100%);
+    border: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .value-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+  }
+
+  .value-card-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .value-card h3 {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .value-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  /* ===== MESSAGES ===== */
+  .message-box {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .message-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .message-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .message-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .message-content {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    font-style: italic;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+  }
+
+  .message-content strong {
+    color: var(--white);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ===== ALLIANCES ===== */
+  .sector {
+    margin-bottom: 5rem;
+  }
+
+  .sector-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sector-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .sector-title {
+    flex: 1;
+  }
+
+  .sector-title h3 {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .sector-title p {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .alliance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .alliance-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .alliance-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+
+  .alliance-card:hover {
+    border-color: rgba(201, 169, 97, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .alliance-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .alliance-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.8rem;
+  }
+
+  .alliance-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .alliance-location {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .alliance-detail {
+    margin-bottom: 1rem;
+  }
+
+  .alliance-detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .alliance-detail-value {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ===== IMPACT / CTA ===== */
+  .impact {
+    text-align: center;
+    padding: 8rem 2rem;
+    background: 
+      radial-gradient(ellipse at center, rgba(201, 169, 97, 0.1) 0%, transparent 70%),
+      var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .impact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .impact::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .impact-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .impact-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .impact h2 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--white);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .impact h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .impact-text {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    margin-bottom: 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .impact-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin: 4rem 0;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .impact-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .impact-stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .cta-button:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--black);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 968px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-toggle {
+      display: block;
+    }
+
+    .core-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .section {
+      padding: 5rem 1.5rem;
+    }
+
+    .hero {
+      padding: 7rem 1.5rem 3rem;
+    }
+
+    .message-box {
+      padding: 2rem 1.5rem;
+    }
+
+    .process::before {
+      left: 20px;
+    }
+
+    .process-number {
+      width: 45px;
+      height: 45px;
+      font-size: 1.2rem;
+    }
+
+    .process-step {
+      gap: 1.5rem;
+    }
+
+    .sector-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 1rem;
+    }
+
+    .stat-value {
+      font-size: 2.2rem;
+    }
+
+    .impact-stats {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .alliance-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--black);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gold-dark);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-container">
+    <div class="nav-brand">Grupo <span>Dos Uno</span></div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#nucleo">Estrategia</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#valor">Valor</a></li>
+      <li><a href="#mensaje">Mensaje</a></li>
+      <li><a href="#alianzas">Alianzas</a></li>
+      <li><a href="#impacto">Impacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Propuesta Estratégica de Negocio</div>
+    <h1>Proyecto en <em>Garantía</em><br>Institucional</h1>
+    <p class="hero-subtitle">
+      Estrategia de captación B2B para el mercado premium de Guadalajara. 
+      Apalancamiento de canales de distribución de alto nivel para asegurar 
+      contratos residenciales de alta gama con riesgo de capital cero.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">$25M</div>
+        <div class="stat-label">Facturación Proyectada</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">$0</div>
+        <div class="stat-label">Riesgo de Capital</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Contratos Objetivo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">10</div>
+        <div class="stat-label">Alianzas Premium</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚCLEO DE LA ESTRATEGIA -->
+<section class="section" id="nucleo">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 01 —</span>
+      <h2 class="section-title">El Núcleo de la <em>Estrategia</em></h2>
+      <p class="section-subtitle">
+        No creamos una promoción masiva. Diseñamos un Producto de Respaldo 
+        Corporativo exclusivo para las Alianzas Comerciales de Alto Nivel en Guadalajara.
+      </p>
+    </div>
+
+    <div class="core-grid">
+      <div class="core-text">
+        <p>
+          La <strong>Garantía Institucional</strong> funciona como nuestra moneda de cambio 
+          con los líderes del mercado premium: Scavolini, Miele, Porcelanosa.
+        </p>
+        <p>
+          En la Zona Metropolitana de Guadalajara, estas marcas pierden millones de pesos al año 
+          porque sus clientes postergan la compra de los acabados por temor a contratar 
+          constructoras informales que ejecuten mal las instalaciones.
+        </p>
+        <p>
+          <strong>Grupo Dos Uno interviene</strong> para resolver la incertidumbre de la tienda. 
+          Le otorgamos al showroom un <strong>Certificado de Respaldo Técnico Blindado</strong>. 
+          La tienda utiliza nuestra ingeniería como una herramienta de cierre para asegurar 
+          sus propias ventas de alto ticket y, a cambio, nos transfiere de forma orgánica 
+          al inversionista VIP que cuenta con los $5 millones listos para construir.
+        </p>
+      </div>
+
+      <div class="core-visual">
+        <div class="triangle">
+          <div class="triangle-item">
+            <h4>Alianza Comercial</h4>
+            <p>Entrega al cliente VIP con capital validado mediante Folio de Confianza.</p>
+          </div>
+          <div class="triangle-item">
+            <h4>Grupo Dos Uno</h4>
+            <p>Proporciona el Proyecto en Garantía y compra exclusiva de insumos.</p>
+          </div>
+          <div class="triangle-item">
+            <h4>Cliente Final</h4>
+            <p>Recibe certeza financiera, ingeniería real y reembolso del diseño.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUSTIFICACIÓN -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 02 —</span>
+      <h2 class="section-title">Justificación <em>Estratégica</em></h2>
+      <p class="section-subtitle">
+        El porqué surgió esta estrategia y cómo optimiza los recursos actuales de la empresa.
+      </p>
+    </div>
+
+    <div class="justification-grid">
+      <div class="justification-card">
+        <div class="justification-icon">01</div>
+        <h3>Optimización Digital</h3>
+        <p>
+          Nuestra presencia en redes sociales posiciona la marca y genera volumen. 
+          Sin embargo, el 95% de los contactos captados se inclina hacia servicios 
+          de menor escala o usuarios con expectativas desalineadas al costo real de obra.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">02</div>
+        <h3>Reto de Seguridad</h3>
+        <p>
+          El cliente con un capital real de $5 MDP o más mantiene un perfil hermético 
+          en el ecosistema digital por protección familiar. No deja sus datos en 
+          formularios abiertos, se cambia el nombre o utiliza perfiles ocultos.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">03</div>
+        <h3>Solución por Apalancamiento</h3>
+        <p>
+          Este programa se suma a las redes como un canal de ultra-segmentación 
+          corporativa B2B. Capturamos al cliente exactamente en el momento en que 
+          se desprende de su perfil oculto: los establecimientos de lujo donde 
+          compra sus insumos antes de construir.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section" id="proceso">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 03 —</span>
+      <h2 class="section-title">El Mecanismo <em>Operativo</em></h2>
+      <p class="section-subtitle">
+        Estructura de Riesgo Cero para la empresa, dividida en 4 etapas transparentes.
+      </p>
+    </div>
+
+    <div class="process">
+      <div class="process-step">
+        <div class="process-number">I</div>
+        <div class="process-content">
+          <h3>Fase de Diagnóstico</h3>
+          <p>
+            Tras validar el folio VIP emitido por la alianza comercial, nuestros 
+            directores de proyecto analizan las escrituras y el reglamento interno 
+            de construcción del fraccionamiento residencial del cliente.
+          </p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">II</div>
+        <div class="process-content">
+          <h3>Contratación del Diseño</h3>
+          <p>
+            Se realiza la formalización y el pago de un monto único y cerrado de 
+            <strong style="color: var(--gold);">$60,000 MXN</strong> correspondientes al desarrollo del 
+            Proyecto Ejecutivo Integral. La empresa cobra desde el día uno.
+          </p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">III</div>
+        <div class="process-content">
+          <h3>Desarrollo de Ingeniería</h3>
+          <p>
+            Diseñamos la residencia a la medida del cliente y entregamos un paquete 
+            técnico completo con validez legal: planos arquitectónicos, ingenierías 
+            estructurales, cálculos de instalaciones, catálogo de conceptos y 
+            renders 3D de alta definición.
+          </p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">IV</div>
+        <div class="process-content">
+          <h3>Activación de la Garantía de Obra</h3>
+          <p>
+            Al aprobar el diseño, se firma el contrato de construcción (mínimo $5 MDP). 
+            En ese instante, los $60,000 MXN se bonifican al 100% en las primeras 
+            estimaciones de obra. El costo por m² se cotiza bajo un Presupuesto 
+            Paramétrico Indexado con vigencia máxima de 30 días naturales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MITIGACIÓN DE RIESGOS -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 04 —</span>
+      <h2 class="section-title">Mitigación de <em>Riesgos</em></h2>
+      <p class="section-subtitle">
+        Justificación de cada acción operativa para proteger el capital de la empresa.
+      </p>
+    </div>
+
+    <div class="justification-grid">
+      <div class="justification-card">
+        <div class="justification-icon">$60K</div>
+        <h3>Cobro Anticipado</h3>
+        <p>
+          Elimina el riesgo financiero. No regalamos trabajo ni somos una "maquila 
+          de ideas" gratis ante la facilidad de la Inteligencia Artificial. Ese dinero 
+          cubre los honorarios del arquitecto. Si el cliente construye con otra persona, 
+          la empresa ya cobró.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">$5M</div>
+        <h3>Filtro de Capital</h3>
+        <p>
+          Al poner la cifra de golpe en la mesa, limpiamos el pipeline de ventas. 
+          El cliente que no tiene el dinero se autoelimina, permitiendo que el equipo 
+          comercial enfoque el 100% de su tiempo solo en citas de alto valor.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">EXC</div>
+        <h3>Exclusividad de Compra</h3>
+        <p>
+          Es la moneda de cambio para que la tienda nos abra su cartera de clientes 
+          sin cobrarnos comisiones en efectivo, respetando la política de la dirección 
+          de no pagar comisiones a inmobiliarias.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">30D</div>
+        <h3>Vigencia del Presupuesto</h3>
+        <p>
+          La cotización inicial tiene validez estricta de 30 días. Si el cliente tarda 
+          más, el presupuesto se recalcula automáticamente según el Índice Nacional 
+          de Precios de la Construcción.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">+5%</div>
+        <h3>Cláusula de Escalación</h3>
+        <p>
+          Si insumos clave (acero, cemento) sufren un incremento mayor al 5%, el costo 
+          se ajusta de mutuo acuerdo. El cliente absorbe solo el diferencial real del 
+          insumo, no Grupo Dos Uno.
+        </p>
+      </div>
+
+      <div class="justification-card">
+        <div class="justification-icon">OC</div>
+        <h3>Órdenes de Cambio</h3>
+        <p>
+          Si la obra se amplía en tiempo por retrasos del cliente (tardanza en elegir 
+          acabados o modificaciones), el contrato estipula que el cliente absorbe los 
+          costos fijos de supervisión por extensión de tiempo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIÁNGULO DE VALOR -->
+<section class="section" id="valor">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 05 —</span>
+      <h2 class="section-title">El Triángulo de <em>Valor</em></h2>
+      <p class="section-subtitle">
+        Lo que gana cada parte en esta alianza estratégica.
+      </p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-card-icon">G2U</div>
+        <h3>Grupo Dos Uno</h3>
+        <p>
+          Aseguramos contratos de $5 MDP con un margen neto del 15% al 20% 
+          ($750K a $1M por obra). Flujo de efectivo inmediato por el cobro del diseño. 
+          Costo de adquisición de cliente de $0 pesos en pauta publicitaria.
+        </p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-card-icon">A</div>
+        <h3>Las Alianzas</h3>
+        <p>
+          Ventas cruzadas garantizadas. Grupo Dos Uno se compromete por contrato a 
+          comprar todo el catálogo de acabados de esa obra en su tienda. Cierran sus 
+          ventas más rápido porque el cliente tiene certeza de construcción.
+        </p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-card-icon">C</div>
+        <h3>El Cliente Final</h3>
+        <p>
+          Certeza financiera y técnica. Recibe un proyecto con costo por m² congelado 
+          por contrato (vigencia 30 días), ingeniería real con validez legal para 
+          permisos y el reembolso total de su diseño si construye con expertos.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENSAJES -->
+<section class="section section-dark" id="mensaje">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 06 —</span>
+      <h2 class="section-title">Medios y <em>Mensajes</em></h2>
+      <p class="section-subtitle">
+        Comunicación directa, transparente y de frente para evitar malentendidos legales en Jalisco.
+      </p>
+    </div>
+
+    <div class="message-box">
+      <div class="message-label">Mensaje Oficial al Cliente Final</div>
+      <h3 class="message-title">Alianza Institucional: [Tienda] & Grupo Dos Uno</h3>
+      <div class="message-content">
+        <strong>Si ya tienes un terreno en zona residencial y vas a construir desde cero, 
+        blindamos tu inversión frente a costos imprevistos.</strong> Al ser cliente VIP de 
+        [Nombre de la Tienda], tienes acceso al programa Proyecto Arquitectónico en Garantía 
+        con Grupo Dos Uno:<br><br>
+        <strong>¿Cómo funciona?</strong> Contratas el diseño completo de tu residencia 
+        (planos arquitectónicos, ingenierías estructurales, catálogo de conceptos y renders 3D) 
+        por un costo único y cerrado de <strong>$60,000 MXN</strong>.<br><br>
+        <strong>La Garantía:</strong> Si decides que Grupo Dos Uno construya tu casa, esos 
+        $60,000 MXN se te reembolsan en su totalidad, abonándose directamente al inicio de 
+        tu obra. El diseño te cuesta $0 pesos.<br><br>
+        <strong>Términos Claros:</strong><br>
+        1. <strong>Certeza Financiera Acotada:</strong> El presupuesto base se respeta y 
+        garantiza por 30 días naturales tras la entrega del Proyecto Ejecutivo. Aplica 
+        exclusivamente para proyectos a partir de $5,000,000 MXN.<br>
+        2. Válido únicamente presentando tu comprobante de compra o folio VIP emitido por 
+        [Nombre de la Tienda].<br>
+        3. <strong>Autonomía de Elección:</strong> Si decides construir con otra empresa, 
+        el Proyecto Ejecutivo Completo y los derechos de autor son 100% tuyos. El monto 
+        inicial de $60,000 MXN ampara y liquida formalmente los honorarios del equipo de 
+        arquitectura e ingeniería.
+      </div>
+    </div>
+
+    <div class="message-box">
+      <div class="message-label">Mensaje Institucional B2B para Cerrar Alianzas</div>
+      <h3 class="message-title">Propuesta de Convenio de Vinculación Comercial</h3>
+      <div class="message-content">
+        "Seleccionamos a <strong>[Nombre de la Marca]</strong> como proveedor exclusivo para 
+        nuestra cartera de proyectos residenciales premium. Queremos firmar un convenio donde 
+        les garantizamos la compra de los acabados de nuestras próximas obras, a cambio de 
+        ofrecer a sus clientes con terreno el programa <strong>'Proyecto en Garantía'</strong> 
+        como un valor agregado exclusivo de su showroom."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALIANZAS -->
+<section class="section" id="alianzas">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-number">— 07 —</span>
+      <h2 class="section-title">Alianzas <em>Objetivo</em></h2>
+      <p class="section-subtitle">
+        Marcas de prestigio en las zonas de mayor riqueza de la ZMG: Avenida Patria, 
+        Providencia y Puerta de Hierro.
+      </p>
+    </div>
+
+    <!-- SECTOR A -->
+    <div class="sector">
+      <div class="sector-header">
+        <div class="sector-letter">A</div>
+        <div class="sector-title">
+          <h3>Showrooms de Cocinas de Importación</h3>
+          <p>El cliente premium define y compra la cocina europea antes de que la casa tenga cimientos.</p>
+        </div>
+      </div>
+
+      <div class="alliance-grid">
+        <div class="alliance-card">
+          <div class="alliance-number">— 01 —</div>
+          <h3 class="alliance-name">Scavolini Store</h3>
+          <div class="alliance-location">Providencia / Puerta de Hierro</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$400,000 a $1,200,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Su cocina queda integrada perfectamente en las ingenierías del Proyecto en Garantía.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Gerente de Showroom / Director de Marca Local</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 02 —</div>
+          <h3 class="alliance-name">Mödul Studio</h3>
+          <div class="alliance-location">Av. Pablo Neruda 2823, Providencia</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$250,000 a $600,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Acelera el cierre cuando el cliente titubea porque "aún no tiene los planos".</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Gerente de Sucursal</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 03 —</div>
+          <h3 class="alliance-name">Bulthaup</h3>
+          <div class="alliance-location">Corredor de Alta Gama ZMG</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$800,000 a $2,500,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Arquitectura de interiores de nivel élite. Materializamos la estructura perfecta que sus planos requieren.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Director de Distribución Local</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTOR B -->
+    <div class="sector">
+      <div class="sector-header">
+        <div class="sector-letter">B</div>
+        <div class="sector-title">
+          <h3>Pisos, Mármoles y Recubrimientos</h3>
+          <p>Ningún fraccionamiento aprueba una fachada sin antes validar los acabados.</p>
+        </div>
+      </div>
+
+      <div class="alliance-grid">
+        <div class="alliance-card">
+          <div class="alliance-number">— 04 —</div>
+          <h3 class="alliance-name">PORCELANOSA</h3>
+          <div class="alliance-location">Av. Niños Héroes 2316, Col. Obrera</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$300,000 a $900,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Garantizamos contrato de compra institucional por el volumen completo de la obra.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Director Comercial de Zona / Gerente de Showroom</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 05 —</div>
+          <h3 class="alliance-name">GILSA</h3>
+          <div class="alliance-location">Zona Comercial Premium / Av. Patria</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$200,000 a $500,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Los posiciona como marca con valor agregado superior frente a distribuidores tradicionales.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Gerente de Showroom</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 06 —</div>
+          <h3 class="alliance-name">Grupo ARCA / Mármoles Puente</h3>
+          <div class="alliance-location">Showrooms de Alta Gama ZMG</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$400,000 a $1,500,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Alianza de especificación técnica. Especificamos sus piedras en el catálogo de conceptos.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Líder de Especificación de Proyectos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTOR C -->
+    <div class="sector">
+      <div class="sector-header">
+        <div class="sector-letter">C</div>
+        <div class="sector-title">
+          <h3>Línea Blanca, Domótica e Interiorismo</h3>
+          <p>Marcas donde los empresarios configuran las ingenierías especiales durante la fase de planos.</p>
+        </div>
+      </div>
+
+      <div class="alliance-grid">
+        <div class="alliance-card">
+          <div class="alliance-number">— 07 —</div>
+          <h3 class="alliance-name">Miele Experience Center</h3>
+          <div class="alliance-location">The Landmark, Puerta de Hierro</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$350,000 a $1,200,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Precisión milimétrica en ingenierías eléctricas e hidráulicas. Instalación blindada por contrato.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Gerente de Showroom / MEC Manager</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 08 —</div>
+          <h3 class="alliance-name">Piacere México / Osso</h3>
+          <div class="alliance-location">Showroom Guadalajara</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$500,000 a $1,500,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">El espacio arquitectónico (muros, plafones, tiros de luz) será construido con exactitud.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Director de Ventas de Osso Fornitures</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 09 —</div>
+          <h3 class="alliance-name">Lutron</h3>
+          <div class="alliance-location">Integradores Certificados en Zapopan</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$300,000 a $800,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Domótica que requiere ingenierías eléctricas impecables. Sin miedo a constructor tradicional.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Director de Proyectos de Integración</div>
+          </div>
+        </div>
+
+        <div class="alliance-card">
+          <div class="alliance-number">— 10 —</div>
+          <h3 class="alliance-name">Roche Bobois / Dupuis</h3>
+          <div class="alliance-location">Av. Vallarta / Zonas Premium</div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Ticket Promedio</div>
+            <div class="alliance-detail-value">$500,000 a $2,000,000 MXN</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Coherencia</div>
+            <div class="alliance-detail-value">Ingenierías precisas aseguran que el entorno físico esté a la altura del mobiliario de lujo.</div>
+          </div>
+          <div class="alliance-detail">
+            <div class="alliance-detail-label">Puesto Clave</div>
+            <div class="alliance-detail-value">Director de Tienda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="impact" id="impacto">
+  <div class="impact-content">
+    <div class="impact-eyebrow">— 08 — Impacto Proyectado</div>
+    <h2>El Cierre de la <em>Presentación</em></h2>
+    <p class="impact-text">
+      Grupo Dos Uno toma el control del mercado premium de Guadalajara de manera elegante 
+      y profesional. Apalancamos la cartera de clientes de las marcas de lujo, arriesgamos 
+      $0 pesos en diseño, protegemos nuestros márgenes ante la inflación y no pagamos 
+      comisiones en efectivo a intermediarios.
+    </p>
+
+    <div class="impact-stats">
+      <div>
+        <div class="impact-stat-value">$25M</div>
+        <div class="impact-stat-label">Facturación Proyectada</div>
+      </div>
+      <div>
+        <div class="impact-stat-value">$3.75M</div>
+        <div class="impact-stat-label">Utilidad Neta Mínima</div>
+      </div>
+      <div>
+        <div class="impact-stat-value">$0</div>
+        <div class="impact-stat-label">Riesgo de Capital</div>
+      </div>
+      <div>
+        <div class="impact-stat-value">0%</div>
+        <div class="impact-stat-label">Comisiones a Intermediarios</div>
+      </div>
+    </div>
+
+    <p class="impact-text">
+      El plan está completamente estructurado operativa y legalmente.<br>
+      <strong style="color: var(--gold);">Solicito la autorización de la dirección para comenzar las firmas 
+      de convenios con las marcas seleccionadas esta misma semana.</strong>
+    </p>
+
+    <a href="#nucleo" class="cta-button">Revisar Propuesta</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Grupo Dos Uno</div>
+  <div class="footer-text">Propuesta Estratégica · Octubre 2026 · Confidencial</div>
+</footer>
+
+<script>
+  // Smooth scroll para navegación móvil
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('active');
+    });
+  });
+
+  // Efecto de aparición al hacer scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.justification-card, .alliance-card, .value-card, .process-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
